@@ -5,8 +5,23 @@ export default {
 </script>
 
 <template>
-  <h1>header</h1>
+  <div class="container">
+    <div class="contImg">
+      <img src="/src/assets/logoCartone.webp" alt="" />
+    </div>
+    <h1>Yu-Gi-Oh API</h1>
+  </div>
 </template>
 
 <style lang="scss" scoped>
+.container {
+  height: 5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .contImg {
+    height: 100%;
+    padding: 1rem;
+  }
+}
 </style>
