@@ -1,9 +1,23 @@
 <script>
 import CardGame from "./CardGame.vue";
+import { data } from "../data/data";
+import axios from "axios";
+
 export default {
   name: "CharactersList",
+  data() {
+    return {
+      data,
+    };
+  },
   components: {
     CardGame,
+  },
+  created() {
+    axios
+      .post(data.urlRichiesta)
+      .then((risposta) => (data.dataGame = risposta.data.data))
+      .catch((errore) => console.log(errore));
   },
 };
 </script>
@@ -11,11 +25,11 @@ export default {
 <template>
   <div class="container">
     <div class="contTitle">
-      <span>Found 39 card</span>
+      <span></span>
     </div>
 
     <div class="contCard">
-      <CardGame />
+      <CardGame v-for="carta in data.dataGame" :key="carta.id" />
     </div>
   </div>
 </template>
@@ -36,22 +50,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    .contImg {
-      text-align: center;
-      background-color: $colorPrincipal;
-      width: 8rem;
-      margin-bottom: 1rem;
-      h3 {
-        font-size: 0.8rem;
-        padding: 1rem;
-      }
-      span {
-        padding: 1rem;
-      }
-      img {
-        width: 100%;
-      }
-    }
   }
 }
 </style>

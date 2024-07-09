@@ -1,15 +1,13 @@
 <script>
 export default {
   name: "CardGame",
+  created() {},
 };
 </script>
 
 <template>
   <div class="contImg">
-    <img
-      src="https://images.ygoprodeck.com/images/cards/34541863.jpg"
-      alt="nome carta"
-    />
+    <img src="" alt="" />
 
     <h3>NOME DELLA CARTA</h3>
     <span>tipo di carta</span>
