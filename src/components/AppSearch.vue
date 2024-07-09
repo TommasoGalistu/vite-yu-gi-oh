@@ -5,28 +5,25 @@ export default {
   data() {
     return {
       data,
+      listaNuova: [],
     };
   },
   methods: {
     getType() {
       if (this.data.isLoad) {
-        const listaNuova = [];
         for (let i = 0; i < this.data.dataGame.length; i++) {
-          console.log(this.data.dataGame[i].archetype);
           if (
             this.data.dataGame[i].archetype !== undefined &&
-            !listaNuova.includes(this.data.dataGame[i].archetype)
+            !this.listaNuova.includes(this.data.dataGame[i].archetype)
           ) {
-            listaNuova.push(this.data.dataGame[i].archetype);
+            this.listaNuova.push(this.data.dataGame[i].archetype);
           }
         }
-        return listaNuova;
+        return this.listaNuova;
       }
     },
   },
-  mounted() {
-    this.getType();
-  },
+  mounted() {},
 };
 </script>
 
