@@ -2,6 +2,7 @@
 import AppHeader from "./components/AppHeader.vue";
 import AppSearch from "./components/AppSearch.vue";
 import CharactersList from "./components/CharactersList.vue";
+
 export default {
   name: "App",
   components: {

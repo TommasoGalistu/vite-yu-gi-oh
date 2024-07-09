@@ -2,7 +2,7 @@
 import CardGame from "./CardGame.vue";
 import { data } from "../data/data";
 import axios from "axios";
-
+import LoadingPage from "./LoadingPage.vue";
 export default {
   name: "CharactersList",
   data() {
@@ -12,6 +12,7 @@ export default {
   },
   components: {
     CardGame,
+    LoadingPage,
   },
   created() {
     axios
@@ -29,7 +30,7 @@ export default {
 <template>
   <div class="container">
     <div class="contTitle">
-      <span></span>
+      <span>adesso</span>
     </div>
 
     <div class="contCard">
@@ -42,6 +43,7 @@ export default {
         :tipo="carta.type"
       />
     </div>
+    <LoadingPage />
   </div>
 </template>
 
