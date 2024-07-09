@@ -1,16 +1,21 @@
 <script>
 export default {
   name: "CardGame",
-  created() {},
+  props: {
+    path: String,
+    descrizione: String,
+    nome: String,
+    tipo: String,
+  },
 };
 </script>
 
 <template>
   <div class="contImg">
-    <img src="" alt="" />
+    <img :src="path" :alt="descrizione" />
 
-    <h3>NOME DELLA CARTA</h3>
-    <span>tipo di carta</span>
+    <h3>{{ nome }}</h3>
+    <span>{{ tipo }}</span>
   </div>
 </template>
 

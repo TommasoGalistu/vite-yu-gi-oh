@@ -16,7 +16,11 @@ export default {
   created() {
     axios
       .post(data.urlRichiesta)
-      .then((risposta) => (data.dataGame = risposta.data.data))
+      .then((risposta) => {
+        data.dataGame = risposta.data.data;
+        console.log("sono i miei dati", data.dataGame);
+      })
+
       .catch((errore) => console.log(errore));
   },
 };
@@ -29,7 +33,14 @@ export default {
     </div>
 
     <div class="contCard">
-      <CardGame v-for="carta in data.dataGame" :key="carta.id" />
+      <CardGame
+        v-for="carta in data.dataGame"
+        :key="carta.id"
+        :path="carta.card_images[0].image_url"
+        :descrizione="carta.name"
+        :nome="carta.name"
+        :tipo="carta.type"
+      />
     </div>
   </div>
 </template>
