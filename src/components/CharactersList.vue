@@ -2,7 +2,7 @@
 import CardGame from "./CardGame.vue";
 import { data } from "../data/data";
 import axios from "axios";
-import LoadingPage from "./LoadingPage.vue";
+import LoadingPage from "./bonus/LoadingPage.vue";
 export default {
   name: "CharactersList",
   data() {
@@ -18,7 +18,11 @@ export default {
     axios
       .post(data.urlRichiesta)
       .then((risposta) => {
-        data.dataGame = risposta.data.data;
+        this.data.dataGame = risposta.data.data;
+        setInterval(() => {
+          this.data.isLoad = true;
+        }, 1000);
+
         console.log("sono i miei dati", data.dataGame);
       })
 
@@ -30,10 +34,10 @@ export default {
 <template>
   <div class="container">
     <div class="contTitle">
-      <span>adesso</span>
+      <span>{{ `Found ${data.dataGame.length} cards` }}</span>
     </div>
 
-    <div class="contCard">
+    <div class="contCard" v-if="data.isLoad">
       <CardGame
         v-for="carta in data.dataGame"
         :key="carta.id"
@@ -43,7 +47,7 @@ export default {
         :tipo="carta.type"
       />
     </div>
-    <LoadingPage />
+    <LoadingPage v-else />
   </div>
 </template>
 

@@ -24,7 +24,7 @@ export default {
 .contImg {
   text-align: center;
   background-color: $colorPrincipal;
-  width: 8rem;
+  height: 25rem;
   margin-bottom: 1rem;
   h3 {
     font-size: 0.8rem;
@@ -34,6 +34,7 @@ export default {
     padding: 1rem;
   }
   img {
+    height: 80%;
     width: 100%;
   }
 }
