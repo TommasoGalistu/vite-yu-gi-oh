@@ -19,6 +19,7 @@ export default {
       .post(data.urlRichiesta)
       .then((risposta) => {
         this.data.dataGame = risposta.data.data;
+
         setInterval(() => {
           this.data.isLoad = true;
         }, 1000);
