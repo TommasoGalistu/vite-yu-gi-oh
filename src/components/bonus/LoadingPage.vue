@@ -1,14 +1,17 @@
+<template>
+  <div class="contLoading">
+    <div class="containText">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+  </div>
+</template>
+
 <script>
 export default {
   name: "LoadingPage",
 };
 </script>
-
-<template>
-  <div class="contLoading">
-    <h3>Loading...</h3>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 .contLoading {
@@ -21,6 +24,31 @@ export default {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  background-color: white;
+  background-color: #d48f38;
+  color: white;
+  z-index: 1000;
+  .containText {
+    p {
+      padding: 1rem;
+      font-size: 0.8rem;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #8f8f8f;
+      border-top: 5px solid #ffffff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
 }
 </style>
