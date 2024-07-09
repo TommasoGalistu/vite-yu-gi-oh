@@ -17,10 +17,11 @@ export default {
 .container {
   height: 5rem;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   .contImg {
     height: 100%;
+
     padding: 1rem;
   }
 }
