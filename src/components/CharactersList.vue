@@ -10,9 +10,14 @@ export default {
       data,
     };
   },
+
   components: {
     CardGame,
     LoadingPage,
+  },
+  computed: {},
+  props: {
+    datiFiltrati: Array,
   },
 };
 </script>
@@ -20,17 +25,17 @@ export default {
 <template>
   <div class="container">
     <div class="contTitle">
-      <span>{{ `Found ${data.dataGame.length} cards` }}</span>
+      <span>{{ `Found ${datiFiltrati.length} cards` }}</span>
     </div>
 
     <div class="contCard" v-if="data.isLoad">
       <CardGame
-        v-for="carta in data.dataGame"
+        v-for="carta in datiFiltrati"
         :key="carta.id"
         :path="carta.card_images[0].image_url"
         :descrizione="carta.name"
         :nome="carta.name"
-        :tipo="carta.type"
+        :tipo="carta.archetype"
       />
     </div>
     <LoadingPage v-else />

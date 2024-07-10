@@ -13,16 +13,17 @@ export default {
       if (this.data.isLoad) {
         for (let i = 0; i < this.data.dataGame.length; i++) {
           if (
-            this.data.dataGame[i].type !== undefined &&
-            !this.listaNuova.includes(this.data.dataGame[i].type)
+            this.data.dataGame[i].archetype !== undefined &&
+            !this.listaNuova.includes(this.data.dataGame[i].archetype)
           ) {
-            this.listaNuova.push(this.data.dataGame[i].type);
+            this.listaNuova.push(this.data.dataGame[i].archetype);
           }
         }
         return this.listaNuova;
       }
     },
   },
+  computed: {},
   mounted() {},
 };
 </script>

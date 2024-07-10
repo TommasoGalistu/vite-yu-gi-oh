@@ -17,6 +17,14 @@ export default {
       data,
     };
   },
+  computed: {
+    datiFiltr() {
+      return data.dataGame.map((carta) => {
+        return carta;
+      });
+    },
+  },
+
   created() {
     axios
       .post(data.urlRichiesta)
@@ -42,7 +50,7 @@ export default {
 
   <main>
     <AppSearch />
-    <CharactersList />
+    <CharactersList :datiFiltrati="datiFiltr" />
   </main>
 </template>
 
