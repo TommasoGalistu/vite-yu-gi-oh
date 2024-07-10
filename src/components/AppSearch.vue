@@ -5,32 +5,32 @@ export default {
   data() {
     return {
       data,
+      archetypes: [],
     };
   },
+
   methods: {
     cercaValore(event) {
       const valore = event.target.value;
       this.$emit("valore-scelto", valore);
     },
-  },
-  computed: {
-    // trova e filtra i nomi archetype delle carte e le mette nella section option
     getType() {
-      let listaNuova = [];
-      if (this.data.isLoad) {
-        for (let i = 0; i < this.data.dataGame.length; i++) {
+      if (data.isLoad) {
+        for (let i = 0; i < data.dataGame.length; i++) {
           if (
-            this.data.dataGame[i].archetype !== undefined &&
-            !listaNuova.includes(this.data.dataGame[i].archetype)
+            data.dataGame[i].archetype !== undefined &&
+            !this.archetypes.includes(data.dataGame[i].archetype)
           ) {
-            listaNuova.push(this.data.dataGame[i].archetype);
+            this.archetypes.push(data.dataGame[i].archetype);
           }
         }
       }
-      return listaNuova;
     },
   },
-  mounted() {},
+  computed: {},
+  mounted() {
+    this.getType();
+  },
 };
 </script>
 
@@ -38,7 +38,7 @@ export default {
   <div class="container">
     <select @change="cercaValore">
       <option value="0">Select Type</option>
-      <option v-for="(tipo, index) in getType" :key="index" :value="tipo">
+      <option v-for="(tipo, index) in archetypes" :key="index" :value="tipo">
         {{ tipo }}
       </option>
     </select>
