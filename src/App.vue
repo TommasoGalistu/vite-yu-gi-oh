@@ -15,43 +15,34 @@ export default {
   data() {
     return {
       data,
-      // valore della section option che sceglie l'utente
-      valoreSection: "",
+      urlFiltrato: "",
     };
   },
-  computed: {
-    datiFiltr() {
-      if (this.valoreSection && this.valoreSection !== "0") {
-        return data.dataGame.filter((carta) => {
-          return carta.archetype === this.valoreSection;
-        });
-      } else {
-        return data.dataGame.map((carta) => {
-          return carta;
-        });
-      }
-    },
-  },
+  computed: {},
   methods: {
     valoreScelto(valore) {
-      console.log("il valore scelto è: ", valore);
-      this.valoreSection = valore;
+      console.log("valore:", valore);
+      this.data.valoreSection = valore;
     },
   },
   created() {
+    this.urlFiltrato = data.urlRichiesta;
+    if (data.valoreSection) {
+      this.urlFiltrato += `&archetype=${data.valoreSection}`;
+    }
     axios
-      .post(data.urlRichiesta)
+      .post(this.urlFiltrato)
       .then((risposta) => {
-        this.data.dataGame = risposta.data.data;
+        data.dataGame = risposta.data.data;
 
         setInterval(() => {
           this.data.isLoad = true;
         }, 1000);
-
+        console.log(this.urlFiltrato);
         console.log("sono i miei dati", data.dataGame);
       })
 
-      .catch((errore) => console.log(errore));
+      .catch((errore) => console.log(errore.message));
   },
 };
 </script>
@@ -63,7 +54,8 @@ export default {
 
   <main>
     <AppSearch @valore-scelto="valoreScelto" />
-    <CharactersList :datiFiltrati="datiFiltr" />
+    <!-- <AppSearch /> -->
+    <CharactersList :datiFiltrati="data.dataGame" />
   </main>
 </template>
 
