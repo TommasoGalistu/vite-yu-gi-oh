@@ -1,7 +1,7 @@
 <script>
 import CardGame from "./CardGame.vue";
 import { data } from "../data/data";
-import axios from "axios";
+
 import LoadingPage from "./bonus/LoadingPage.vue";
 export default {
   name: "CharactersList",
@@ -13,21 +13,6 @@ export default {
   components: {
     CardGame,
     LoadingPage,
-  },
-  created() {
-    axios
-      .post(data.urlRichiesta)
-      .then((risposta) => {
-        this.data.dataGame = risposta.data.data;
-
-        setInterval(() => {
-          this.data.isLoad = true;
-        }, 1000);
-
-        console.log("sono i miei dati", data.dataGame);
-      })
-
-      .catch((errore) => console.log(errore));
   },
 };
 </script>
