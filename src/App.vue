@@ -15,6 +15,8 @@ export default {
   data() {
     return {
       data,
+      // valore della section option che sceglie l'utente
+      valoreSection: "",
     };
   },
   computed: {
@@ -24,7 +26,12 @@ export default {
       });
     },
   },
-
+  methods: {
+    valoreScelto(valore) {
+      console.log("il valore scelto è: ", valore);
+      this.valoreSection = valore;
+    },
+  },
   created() {
     axios
       .post(data.urlRichiesta)
@@ -49,7 +56,7 @@ export default {
   </header>
 
   <main>
-    <AppSearch />
+    <AppSearch @valore-scelto="valoreScelto" />
     <CharactersList :datiFiltrati="datiFiltr" />
   </main>
 </template>
