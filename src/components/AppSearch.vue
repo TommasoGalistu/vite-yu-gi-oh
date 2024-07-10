@@ -13,10 +13,10 @@ export default {
       if (this.data.isLoad) {
         for (let i = 0; i < this.data.dataGame.length; i++) {
           if (
-            this.data.dataGame[i].archetype !== undefined &&
-            !this.listaNuova.includes(this.data.dataGame[i].archetype)
+            this.data.dataGame[i].type !== undefined &&
+            !this.listaNuova.includes(this.data.dataGame[i].type)
           ) {
-            this.listaNuova.push(this.data.dataGame[i].archetype);
+            this.listaNuova.push(this.data.dataGame[i].type);
           }
         }
         return this.listaNuova;
