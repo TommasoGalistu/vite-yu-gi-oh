@@ -8,11 +8,10 @@ export default {
     };
   },
   methods: {
-    handleChange(event) {
-      const selectedType = event.target.value;
-      if (selectedType !== "0") {
-        this.$emit("valore-scelto", selectedType);
-      }
+    cercaValore(event) {
+      const valore = event.target.value;
+
+      this.$emit("valore-scelto", valore);
     },
   },
   computed: {
@@ -38,7 +37,7 @@ export default {
 
 <template>
   <div class="container">
-    <select @change="handleChange">
+    <select @change="cercaValore">
       <option value="0">Select Type</option>
       <option v-for="(tipo, index) in getType" :key="index" :value="tipo">
         {{ tipo }}

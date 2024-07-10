@@ -21,9 +21,15 @@ export default {
   },
   computed: {
     datiFiltr() {
-      return data.dataGame.map((carta) => {
-        return carta;
-      });
+      if (this.valoreSection && this.valoreSection !== "0") {
+        return data.dataGame.filter((carta) => {
+          return carta.archetype === this.valoreSection;
+        });
+      } else {
+        return data.dataGame.map((carta) => {
+          return carta;
+        });
+      }
     },
   },
   methods: {
