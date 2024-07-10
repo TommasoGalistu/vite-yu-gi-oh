@@ -10,7 +10,6 @@ export default {
   methods: {
     cercaValore(event) {
       const valore = event.target.value;
-
       this.$emit("valore-scelto", valore);
     },
   },

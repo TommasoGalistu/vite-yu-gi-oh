@@ -23,26 +23,26 @@ export default {
     valoreScelto(valore) {
       console.log("valore:", valore);
       this.data.valoreSection = valore;
+      this.fetchData();
+    },
+    fetchData() {
+      let urlFiltrato = this.data.urlRichiesta;
+      if (this.data.valoreSection) {
+        urlFiltrato += `&archetype=${this.data.valoreSection}`;
+      }
+      axios
+        .post(urlFiltrato)
+        .then((risposta) => {
+          this.data.dataGame = risposta.data.data;
+          this.data.isLoad = true;
+          console.log(urlFiltrato);
+          console.log("sono i miei dati", this.data.dataGame);
+        })
+        .catch((errore) => console.log(errore.message));
     },
   },
   created() {
-    this.urlFiltrato = data.urlRichiesta;
-    if (data.valoreSection) {
-      this.urlFiltrato += `&archetype=${data.valoreSection}`;
-    }
-    axios
-      .post(this.urlFiltrato)
-      .then((risposta) => {
-        data.dataGame = risposta.data.data;
-
-        setInterval(() => {
-          this.data.isLoad = true;
-        }, 1000);
-        console.log(this.urlFiltrato);
-        console.log("sono i miei dati", data.dataGame);
-      })
-
-      .catch((errore) => console.log(errore.message));
+    this.fetchData();
   },
 };
 </script>
