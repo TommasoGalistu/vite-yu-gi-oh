@@ -7,8 +7,8 @@ export default {
     return {
       data,
       dataSearch: [],
-      archetypes: [],
-      urlSalvato: "",
+      archetypesSingol: [],
+      urlSalvato: "https://db.ygoprodeck.com/api/v7/archetypes.php",
       datiPreseti: false,
     };
   },
@@ -20,29 +20,15 @@ export default {
     },
 
     richiestaDati() {
-      this.urlSalvato = this.data.urlRichiesta;
-
       axios
         .post(this.urlSalvato)
         .then((risposta) => {
-          this.dataSearch = risposta.data.data;
+          console.log("risposta api nuova: ", risposta.data);
+          this.dataSearch = risposta.data;
           this.datiPreseti = true;
           console.log("i dati ci sono");
         })
         .catch((errore) => console.log(errore.message));
-    },
-    getType() {
-      if (this.datiPreseti) {
-        for (let i = 0; i < this.dataSearch.length; i++) {
-          if (
-            this.dataSearch[i].archetype !== undefined &&
-            !this.archetypes.includes(data.dataGame[i].archetype)
-          ) {
-            this.archetypes.push(this.dataSearch[i].archetype);
-          }
-        }
-      }
-      return this.archetypes;
     },
   },
   computed: {},
@@ -56,8 +42,12 @@ export default {
   <div class="container">
     <select @change="cercaValore">
       <option value="0">Select Type</option>
-      <option v-for="(tipo, index) in getType()" :key="index" :value="tipo">
-        {{ tipo }}
+      <option
+        v-for="(archetipo, index) in dataSearch"
+        :key="index"
+        :value="archetipo.archetype_name"
+      >
+        {{ archetipo.archetype_name }}
       </option>
     </select>
   </div>
