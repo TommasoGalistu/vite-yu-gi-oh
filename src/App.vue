@@ -22,6 +22,7 @@ export default {
   methods: {
     valoreScelto(valore) {
       console.log("valore:", valore);
+
       this.data.valoreSection = valore;
       this.fetchData();
     },
@@ -30,13 +31,14 @@ export default {
       if (this.data.valoreSection) {
         urlFiltrato += `&archetype=${this.data.valoreSection}`;
       }
+      console.log(urlFiltrato);
       axios
         .post(urlFiltrato)
         .then((risposta) => {
           this.data.dataGame = risposta.data.data;
-          this.data.isLoad = true;
-          console.log(urlFiltrato);
-          console.log("sono i miei dati", this.data.dataGame);
+          setTimeout(() => {
+            this.data.isLoad = true;
+          }, 1000);
         })
         .catch((errore) => console.log(errore.message));
     },
